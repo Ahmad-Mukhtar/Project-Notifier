@@ -44,7 +44,7 @@ def getPythonjobs():
         if is_connected():
             for index, id in enumerate(ids):
                 driver.get(f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={id}&sort=recency")
-                time.sleep(10)
+                time.sleep(90)
                 element = driver.find_element(By.CSS_SELECTOR, '[data-test="job-tile-list"]')
                 span_ele = element.find_element(By.TAG_NAME, 'small')
                 print(span_ele.text)
@@ -57,7 +57,7 @@ def getPythonjobs():
                                       duration=20)
 
                 pb.push_note(f"New {job_type[index]} Project", "New project Posted about " + posted_time)
-                time.sleep(10)
+                time.sleep(200)
 
         else:
             print("Wifi Not Connected")
