@@ -37,13 +37,3 @@ This Python automation tool leverages the Selenium WebDriver to scrape and monit
 
 - Modify the `config.py` file to specify your Upwork filter criteria and notification settings.
 - Adjust the script's timing and frequency in `scheduler.py` to suit your preferences.
-
-## Contributing:
-
-We welcome contributions! If you'd like to enhance this project, please:
-
-1. Fork the repository.
-2. Create a new branch (e.g., `git checkout -b feature/your-feature`).
-3. Commit your changes (e.g., `git commit -m 'Add some feature'`).
-4. Push to the branch (e.g., `git push origin feature/your-feature`).
-5. Create a new Pull Request.
