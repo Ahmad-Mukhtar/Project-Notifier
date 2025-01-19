@@ -29,7 +29,6 @@ def getJobs():
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
         "Connection": "keep-alive",
-        "Accept-Encoding": "gzip, deflate, br",
         "Upgrade-Insecure-Requests": "1"
     }
     scraper = cloudscraper.create_scraper(
