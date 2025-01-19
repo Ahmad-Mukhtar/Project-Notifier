@@ -45,7 +45,6 @@ def getJobs():
                 response = scraper.get(
                     f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}&sort=recency",
                     headers=headers)
-                print("Response is : " + response.text)
                 soup = BeautifulSoup(response.content, "html.parser")
                 try:
                     print(f"Soup is {soup.text}")
