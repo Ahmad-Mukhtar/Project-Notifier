@@ -29,4 +29,4 @@ jobs:
         WAIT_TIME_AFTER_SCRAPING: ${{ vars.WAIT_TIME_AFTER_SCRAPING }}
         PB_KEY: ${{ secrets.PB_KEY }}
       run: |
-        python main.py
+        python -u main.py
