@@ -28,14 +28,19 @@ def getJobs():
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                       "(HTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36"
     }
-    #scraper = cloudscraper.create_scraper()
-    scraper = cloudscraper.create_scraper(browser={'browser': 'firefox', 'platform': 'windows', 'mobile': False})
-
+    scraper = cloudscraper.create_scraper(
+        browser={
+            "browser": "chrome",
+            "platform": "windows",
+            "desktop": True,
+        },
+    )
     while True:
         if is_connected():
             for index, project_id in enumerate(IDS_TO_CONSIDER):
                 response = scraper.get(
                     f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}&sort=recency")
+                print("Response is : " + response.text)
                 soup = BeautifulSoup(response.content, "html.parser")
                 try:
                     print(f"Soup is {soup.text}")
