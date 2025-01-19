@@ -26,6 +26,6 @@ jobs:
 
     - name: Run Script
       env:
-        WAIT_TIME_AFTER_SCRAPING: ${{ env.WAIT_TIME_AFTER_SCRAPING }}
-        run: echo "My APP_ID value is ${{ env.WAIT_TIME_AFTER_SCRAPING }}"
+        WAIT_TIME_AFTER_SCRAPING: ${{ vars.WAIT_TIME_AFTER_SCRAPING }}
+        run: echo "My WAIT_TIME_AFTER_SCRAPING value is ${{ vars.WAIT_TIME_AFTER_SCRAPING }}"
       run: python main.py  # Run your script
