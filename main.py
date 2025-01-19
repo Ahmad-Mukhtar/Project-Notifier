@@ -32,16 +32,24 @@ def getJobs():
     while True:
         if is_connected():
             for index, project_id in enumerate(IDS_TO_CONSIDER):
-                response = scraper.get(f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}"
-                                       f"&sort=recency",
-                                       headers=headers)
+                response = scraper.get(
+                    f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}&sort=recency",
+                    headers=headers)
                 soup = BeautifulSoup(response.content, "html.parser")
                 try:
-                    jobs_section = soup.find("section", {"data-ev-label": "search_result_impression"})
+                    print(f"Soup is {soup.text}")
+                    jobs_section = soup.find("section")
+                    print(f"Jobs_section {jobs_section}")
                     jobs_headers = jobs_section.findAll("div", {"class": "job-tile-header"})
-                    latest_posted_job = jobs_headers[0]
-                    # for job in jobs_headers[:5]:
-                    #     print(job.text)
+                    latest_posted_job = None
+                    for job in jobs_headers:
+                        posted_time = job.text.split()
+                        posted_time = posted_time[1] + " " + posted_time[2] + " " + posted_time[3]
+                        if "day" in posted_time:
+                            print(f"Premium job{job.text} ")
+                        else:
+                            latest_posted_job = job
+                            break
                     posted_job_list = latest_posted_job.text.split()
                     print(f"New {JOB_TYPE_TO_CONSIDER[index]} Project")
                     print(str(posted_job_list))
