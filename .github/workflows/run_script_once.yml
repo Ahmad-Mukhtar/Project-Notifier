@@ -22,6 +22,7 @@ jobs:
     - name: Install Dependencies
       run: |
         pip install -r requirements.txt
+        pip install pushbullet.py==0.9.1
 
     - name: Run Script
       run: python main.py  # Run your script
