@@ -28,5 +28,5 @@ jobs:
       env:
         WAIT_TIME_AFTER_SCRAPING: ${{ vars.WAIT_TIME_AFTER_SCRAPING }}
         PB_KEY: ${{ secrets.PB_KEY }}
-        run: echo "My ${{ secrets.PB_KEY }} value is ${{ vars.WAIT_TIME_AFTER_SCRAPING }}"
-      run: python main.py  # Run your script
+      run: |
+        python main.py
