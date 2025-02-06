@@ -43,6 +43,7 @@ def getJobs():
                 job_url = f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}&sort=recency"
                 response = scraper.get(job_url, headers=headers)
                 soup = BeautifulSoup(response.content, "html.parser")
+                print(f"The url used was {job_url}")
                 try:
                     jobs_section = soup.find("section")
                     jobs_headers = jobs_section.findAll("div", {"class": "job-tile-header"})
