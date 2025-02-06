@@ -23,7 +23,7 @@ jobs:
       run: |
         pip install -r requirements.txt
         pip install pushbullet.py==0.9.1
-
+        pip install pytz==2025.1
     - name: Run Script
       env:
         WAIT_TIME_AFTER_SCRAPING: ${{ vars.WAIT_TIME_AFTER_SCRAPING }}
