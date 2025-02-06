@@ -92,7 +92,6 @@ def getJobs():
                 soup = BeautifulSoup(response.content, "html.parser")
                 try:
                     jobs_section = soup.find("section")
-                    print(jobs_section)
                     jobs_headers = jobs_section.findAll("div", {"class": "job-tile-header"})
                     latest_posted_job = None
                     for job in jobs_headers:
