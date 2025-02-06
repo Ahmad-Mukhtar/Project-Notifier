@@ -1,14 +1,13 @@
 import os
 import time
 import urllib.request
-from datetime import date, datetime
 
 import cloudscraper
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from pushbullet import Pushbullet
+
 from config import JOB_TYPE_TO_CONSIDER, IDS_TO_CONSIDER
-import pytz
 
 load_dotenv(".env")
 PB_KEY = os.getenv('PB_KEY')
@@ -34,7 +33,7 @@ def getJobs():
         "Connection": "keep-alive",
         "cache-control": "max-age=0",
         "Upgrade-Insecure-Requests": "1",
-        "Cache-Control": "no-cache",
+        "Cache-Control": "no-cache, must-revalidate",
         "Cookie": "visitor_id=124.29.253.188.1738837186273000; "
                   "UniversalSearchNuxt_vt=oauth2v2_7730e08c20cc7c795e5c713b05a451eb; country_code=PK; cookie_prefix=; "
                   "cookie_domain=.upwork.com; __cf_bm=gsJP_o5hzaSwsrZaS4CR3L2ocTvz8487cVZ6X.s0Qsg-1738837187-1.0.1.1"
@@ -84,13 +83,8 @@ def getJobs():
             'mobile': False
         }
     )
-    # Set your desired time zone
-    local_tz = pytz.timezone("Asia/Karachi")
-
+    # Set your desired time
     # Convert the UTC time to your desired time zone
-    utc_time = datetime.now(pytz.utc)
-    local_time = utc_time.astimezone(local_tz)
-    print("Local Time:", local_time)
     while True:
         if is_connected():
             for index, project_id in enumerate(IDS_TO_CONSIDER):
