@@ -1,6 +1,8 @@
 import os
 import time
 import urllib.request
+from datetime import date
+
 import cloudscraper
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -80,15 +82,15 @@ def getJobs():
             'mobile': False
         }
     )
+    today = date.today()
+    print("Today's date:", today)
     while True:
         if is_connected():
             for index, project_id in enumerate(IDS_TO_CONSIDER):
                 job_url = f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}&sort=recency"
                 response = scraper.get(job_url, headers=headers)
                 soup = BeautifulSoup(response.content, "html.parser")
-                print(f"The url used was {job_url}")
                 try:
-                    print("The Soup is")
                     jobs_section = soup.find("section")
                     print(jobs_section)
                     jobs_headers = jobs_section.findAll("div", {"class": "job-tile-header"})
