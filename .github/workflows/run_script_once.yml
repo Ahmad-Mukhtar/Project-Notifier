@@ -27,6 +27,7 @@ jobs:
     - name: Run Script
       env:
         WAIT_TIME_AFTER_SCRAPING: ${{ vars.WAIT_TIME_AFTER_SCRAPING }}
+        WAIT_TIME_AFTER_SCRAPING_ALL: ${{ vars.WAIT_TIME_AFTER_SCRAPING_ALL }}
         PB_KEY: ${{ secrets.PB_KEY }}
       run: |
         python -u main.py
