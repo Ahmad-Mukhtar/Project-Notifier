@@ -24,14 +24,12 @@ def is_connected():
 
 def getJobs():
     headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0",
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                        "Accept-Language": "en-US,en;q=0.9",
-                            "Connection": "keep-alive",
-                                "Upgrade-Insecure-Requests": "1",
-                                "Referer": "https://www.google.com/",  # Replace with a valid referer if necessary
-                                    "Origin": "https://www.upwork.com"    # Replace with the appropriate origin
-                                        }
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        }
     scraper = cloudscraper.create_scraper(
         browser={
             'browser': 'firefox',
@@ -42,8 +40,8 @@ def getJobs():
     while True:
         if is_connected():
             for index, project_id in enumerate(IDS_TO_CONSIDER):
-                job_url =f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}&sort=recency"
-                response = scraper.get(job_url,headers=headers)
+                job_url = f"https://www.upwork.com/nx/jobs/search/?ontology_skill_uid={project_id}&sort=recency"
+                response = scraper.get(job_url, headers=headers)
                 soup = BeautifulSoup(response.content, "html.parser")
                 try:
                     jobs_section = soup.find("section")
@@ -63,7 +61,8 @@ def getJobs():
                     posted_time = posted_job_list[1] + " " + posted_job_list[2] + " " + posted_job_list[3]
                     print(f"Posted Time is : {posted_time}")
                     if "minute" in posted_time or "second" in posted_time:
-                        pb.push_note(f"New {JOB_TYPE_TO_CONSIDER[index]} Project", latest_posted_job.text+" job Link:  " + job_url)
+                        pb.push_note(f"New {JOB_TYPE_TO_CONSIDER[index]} Project",
+                                     latest_posted_job.text + " job Link:  " + job_url)
                         print("Notification Sent")
                 except Exception as e:
                     print(f"Some Exception Occurred  {e}")
